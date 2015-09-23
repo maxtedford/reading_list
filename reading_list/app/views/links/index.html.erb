@@ -5,15 +5,15 @@
 <h3>Add a new link to your list:</h3>
 <%= form_for :link do |f| %>
   <%= f.label :url %>
-  <%= f.text_field :url %>
+  <%= f.text_field :url, id: "link-url" %>
   <%= f.hidden_field :user_id %>
-  <%= f.submit "Add" %>
+  <%= f.submit "Add", id: "submit-button" %>
 <% end %>
 <br>
 <h4>Your links:</h4>
-<ul>
+<ul id="link-list">
   <% current_user.unread_links.each do |link| %>
-    <li>
+    <li data-read="<%= link.read %>">
       <%= link_to link.url %>
       <br>
       <%= link.check_if_read %>

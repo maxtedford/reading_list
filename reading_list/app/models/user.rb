@@ -14,6 +14,6 @@ class User < ActiveRecord::Base
   end
   
   def unread_links
-    links.where(read: false) && links.where(read: nil)
+    links.where(read: false) || links.where(read: nil)
   end
 end
