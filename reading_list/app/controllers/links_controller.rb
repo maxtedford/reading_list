@@ -6,7 +6,7 @@ class LinksController < ApplicationController
   end
   
   def create
-    link = current_user.links.new(link_params)
+    link = current_user.links.new(url: params[:url])
     if link.save
       flash[:message] = "You've added #{link.url} to your list"
       redirect_to links_path
@@ -31,9 +31,5 @@ class LinksController < ApplicationController
     else
       link.update_attributes(read: true)
     end
-  end
-  
-  def link_params
-    params.require(:link).permit(:url, :read, :user_id)
   end
 end
