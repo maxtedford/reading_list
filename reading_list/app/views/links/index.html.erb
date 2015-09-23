@@ -1,0 +1,43 @@
+<h1>Welcome to Reading List, <%= current_user.email %>!</h1>
+
+<%= link_to "Logout", logout_path, method: :delete %>
+<br>
+<h3>Add a new link to your list:</h3>
+<%= form_for :link do |f| %>
+  <%= f.label :url %>
+  <%= f.text_field :url %>
+  <%= f.hidden_field :user_id %>
+  <%= f.submit "Add" %>
+<% end %>
+<br>
+<h4>Your links:</h4>
+<ul>
+  <% current_user.unread_links.each do |link| %>
+    <li>
+      <%= link_to link.url %>
+      <br>
+      <%= link.check_if_read %>
+      <% if link.read %>
+        <%= link_to "Mark as unread", link, method: :put %>
+      <% else %>
+        <%= link_to "Mark as read", link, method: :put %>
+      <% end %>
+    </li>
+  <% end %>
+</ul>
+<ul>
+  <% current_user.read_links.each do |link| %>
+    <li>
+      <%= link_to link.url %>
+      <br>
+      <%= link.check_if_read %>
+      <% if link.read %>
+        <%= link_to "Mark as unread", link, method: :put %>
+      <% else %>
+        <%= link_to "Mark as read", link, method: :put %>
+      <% end %>
+    </li>
+  <% end %>
+</ul>
+
+
