@@ -63,5 +63,16 @@ RSpec.describe User, type: :model do
       expect(user.read_links.first.url).to eq("http://readlink.com")
       expect(user.read_links.count).to eq(1)
     end
+
+    it "can return all the unread links" do
+      user = User.create(valid_attributes)
+      user.links.create(url: "http://unreadlink.com",
+        read: false)
+      user.links.create(url: "http://readlink.com",
+        read: true)
+
+      expect(user.read_links.first.url).to eq("http://readlink.com")
+      expect(user.read_links.count).to eq(1)
+    end
   end
 end
