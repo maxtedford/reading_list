@@ -37,7 +37,7 @@ RSpec.describe "authenticated user", type: :feature do
       expect(page).to have_button("Add")
     end
     
-    it "adds a new link for the user upon submission" do
+    xit "adds a new link for the user upon submission", js: true do
       expect(user.links.count).to eq(0)
       
       fill_in "link[url]", with: "http://examplelink.com"
@@ -47,7 +47,7 @@ RSpec.describe "authenticated user", type: :feature do
       expect(user.links.count).to eq(1)
     end
     
-    it "displays all the links as actual clickable links" do
+    xit "displays all the links as actual clickable links", js: true do
       fill_in "link[url]", with: "http://examplelink.com"
       click_button "Add"
       

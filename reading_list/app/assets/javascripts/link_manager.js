@@ -53,11 +53,10 @@ function updateLink(id, li) {
 
 function reRenderLink(li) {
   if(li.parent().data().id === "unread-links"){
-    $('#read-links').append(li)
-    bindLinkEditLinks()
+    $('#read-links').append(li.html());
   } else {
-    $('#unread-links').append(li)
-    bindLinkEditLinks()
+    $('#unread-links').append(li.html());
   }
-  li.remove();;
+  li.remove();
+  bindLinkEditLinks();
 }
